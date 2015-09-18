@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ToggleButton</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="toggle_button_on">Toggle On</string>
+    <string name="toggle_button_off">Toggle Off</string>
+    <string name="button_display">Click Me</string>
+</resources>
