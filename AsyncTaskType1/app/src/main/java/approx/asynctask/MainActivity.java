@@ -1,37 +1,58 @@
 package approx.asynctask;
 
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.math.BigInteger;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView display_text_view;
+    Button async_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        display_text_view= (TextView) findViewById(R.id.display_text_view);
+        async_button= (Button) findViewById(R.id.async_task_button);
+        async_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new PrimeTask(display_text_view).execute(500);
+            }
+        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    private class PrimeTask extends AsyncTask<Integer,Void,BigInteger>{
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        private TextView resultView;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
+        public PrimeTask(TextView resultView){
+            this.resultView=resultView;
         }
 
-        return super.onOptionsItemSelected(item);
+
+        @Override
+        protected BigInteger doInBackground(Integer... params) {
+            int n = params[0];
+            BigInteger prime = new BigInteger("2");
+            for (int i=0; i<n; i++) {
+                prime = prime.nextProbablePrime();
+            }
+            return prime;
+        }
+
+        @Override
+        protected void onPostExecute(BigInteger bigInteger) {
+            resultView.setText(String.valueOf(bigInteger));
+        }
     }
+
+
 }
