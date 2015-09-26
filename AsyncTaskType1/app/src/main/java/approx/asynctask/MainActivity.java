@@ -81,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onCancelled(BigInteger bigInteger) {
+            if(bigInteger != null){
+                resultView.setText("Progress Stopped At: "+String.valueOf(bigInteger));
+            }
+        }
+
+
+        @Override
         protected void onProgressUpdate(Integer... values) {
             mProgressDialog.setProgress(values[0]);
         }
