@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
                 int percent = (int)((i * 100f)/primeToFind);
                 if (percent > progress) {
                     publishProgress(percent);
-                    progress = percent;
+                    if(isCancelled()){
+                        break;
+                    }
                 }
             }
             return prime;
