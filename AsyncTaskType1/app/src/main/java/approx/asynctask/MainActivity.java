@@ -1,5 +1,7 @@
 package approx.asynctask;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         async_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new PrimeTask(display_text_view).execute(500);
+                new PrimeTask(MainActivity.this,display_text_view).execute(500);
             }
         });
     }
@@ -31,12 +33,22 @@ public class MainActivity extends AppCompatActivity {
     private class PrimeTask extends AsyncTask<Integer,Void,BigInteger>{
 
         private TextView resultView;
+        private ProgressDialog mProgressDialog;
+        private Context mContext;
 
 
-        public PrimeTask(TextView resultView){
+        public PrimeTask(Context mContext,TextView resultView){
+            this.mContext=mContext;
             this.resultView=resultView;
         }
 
+        @Override
+        protected void onPreExecute() {
+            mProgressDialog = new ProgressDialog(mContext);
+            mProgressDialog.setTitle("Task OFF the Main Thread");
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
+        }
 
         @Override
         protected BigInteger doInBackground(Integer... params) {
@@ -51,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(BigInteger bigInteger) {
             resultView.setText(String.valueOf(bigInteger));
+            mProgressDialog.dismiss();
         }
     }
 
