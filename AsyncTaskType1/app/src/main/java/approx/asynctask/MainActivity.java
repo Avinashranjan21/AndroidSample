@@ -2,6 +2,7 @@ package approx.asynctask;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private class PrimeTask extends AsyncTask<Integer,Void,BigInteger>{
+    private class PrimeTask extends AsyncTask<Integer,Integer,BigInteger>{
 
         private TextView resultView;
         private ProgressDialog mProgressDialog;
@@ -46,18 +47,40 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             mProgressDialog = new ProgressDialog(mContext);
             mProgressDialog.setTitle("Task OFF the Main Thread");
-            mProgressDialog.setCancelable(false);
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mProgressDialog.setCancelable(true);
+            mProgressDialog.setProgress(0);
+            mProgressDialog.setMax(100);
             mProgressDialog.show();
+            mProgressDialog.setOnCancelListener(
+                    new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
+                            PrimeTask.this.cancel(false);
+                        }
+                    }
+            );
         }
 
         @Override
         protected BigInteger doInBackground(Integer... params) {
-            int n = params[0];
+            int primeToFind = params[0];
             BigInteger prime = new BigInteger("2");
-            for (int i=0; i<n; i++) {
+            int progress = 0;
+            for (int i=0; i<primeToFind; i++) {
                 prime = prime.nextProbablePrime();
+                int percent = (int)((i * 100f)/primeToFind);
+                if (percent > progress) {
+                    publishProgress(percent);
+                    progress = percent;
+                }
             }
             return prime;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            mProgressDialog.setProgress(values[0]);
         }
 
         @Override
