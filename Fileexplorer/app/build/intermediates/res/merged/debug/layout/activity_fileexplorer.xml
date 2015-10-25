@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    >
+    <TextView android:id="@+id/textview" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:text="Select File To Compress"
+        android:textSize="18dp"
+        android:gravity="center" 
+        android:layout_marginTop="10dp"      
+    />    
+    <RelativeLayout android:id="@+id/relativeLayout1" 
+        android:layout_height="wrap_content" 
+        android:layout_width="wrap_content">  
+        <EditText
+            android:layout_alignParentLeft="true" 
+            android:hint="EditText"
+            android:id="@+id/editText" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="5dp"
+	        android:layout_marginRight="5dp"
+            android:layout_marginTop="15dp" 
+	        android:ems="10"
+	        android:inputType="textPersonName" 
+            android:layout_toLeftOf="@+id/select_source" >
+    	</EditText>
+    
+        <Button android:text="Source"
+	         android:id="@+id/select_source"
+	         android:textSize="18dp"
+	         android:layout_marginTop="10dp" 
+	         android:layout_alignParentRight="true" 
+	         android:layout_height="wrap_content" 
+	         android:layout_width="wrap_content" 
+            >
+         </Button>
+    </RelativeLayout>
+    <RelativeLayout android:id="@+id/relativeLayout2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+        <EditText
+            android:layout_alignParentLeft="true"
+            android:hint="EditText"
+            android:id="@+id/editText_destination"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_toLeftOf="@+id/select_destination" >
+        </EditText>
+
+        <Button android:text="Destination"
+            android:id="@+id/select_destination"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            >
+        </Button>
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/select_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/select_compress"
+        android:text="Compress"
+        android:layout_margin="50dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+<!-- From: file:/C:/Users/avina/AndroidSample/Fileexplorer/app/src/main/res/layout/activity_fileexplorer.xml -->
