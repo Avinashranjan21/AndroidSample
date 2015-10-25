@@ -105,8 +105,10 @@ public class Explorer extends ListActivity {
     	Intent intent = new Intent();
         intent.putExtra("GetPath",currentDir.toString());
         intent.putExtra("GetFilePath",o.getPath().toString());
-        intent.putExtra("GetFileName",o.getName());
-        setResult(RESULT_OK, intent);
+		if(extras.getInt("REQUEST_CODE")==1){
+			intent.putExtra("GetFileName", o.getName());
+		}
+		setResult(RESULT_OK, intent);
         finish();
     }
 }

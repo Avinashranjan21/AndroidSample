@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,6 +28,7 @@ public class MainActivity extends Activity {
 	Button select_source,Select_destination,select_compress;
 	EditText edittext_source,edittext_destination;
 	ImageView select_image;
+	Uri myUri;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class MainActivity extends Activity {
 		select_compress.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-
+			compress_bitmap(myUri);
 			}
 		});
     }
@@ -75,21 +77,21 @@ public class MainActivity extends Activity {
     			curFileName = data.getStringExtra("GetFilePath");
 				file_name = data.getStringExtra("GetFileName");
 				edittext_source.setText(curFileName);
-				Uri myUri = Uri.parse(curFileName);
+				myUri = Uri.parse(curFileName);
     		}
     	 } else if (requestCode == REQUEST_DESTINATION){
 			if (resultCode == RESULT_OK) {
 				curFileName = data.getStringExtra("GetFilePath");
-				file_name = data.getStringExtra("GetFileName");
 				edittext_destination.setText(curFileName);
 			}
 		}
     }
 	private void compress_bitmap(Uri bitmap_uri){
 		try {
-			Bitmap mBitmap =  MediaStore.Images.Media.getBitmap(this.getContentResolver(), bitmap_uri);
-			getResizedBitmap(mBitmap,50,50);
+			Bitmap mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), bitmap_uri);
+			createDirectoryAndSaveFile(mBitmap,file_name,bitmap_uri);
 		} catch (IOException e) {
+			Toast.makeText(getApplicationContext(),"Please Check The Input Again",Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 	}
@@ -107,8 +109,6 @@ public class MainActivity extends Activity {
 	}
 
 	private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName,Uri save_destination) {
-
-		File direct = new File(save_destination.getPath());
 
 		File file = new File(new File(save_destination.getPath()), fileName);
 		if (file.exists()) {

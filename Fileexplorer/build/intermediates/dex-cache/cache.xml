@@ -2,11 +2,25 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\avina\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jar="C:\Users\avina\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="C:\Users\avina\AndroidSample\Fileexplorer\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-528476a74169692dadd0a0cda07df8e39c7d19ae.jar" />
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="C:\Users\avina\AndroidSample\Fileexplorer\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.0-fe1d649d66e2a3d103450d7bec413ef7b8e3fc41.jar" />
+    </item>
+    <item
+        jar="C:\Users\avina\AndroidSample\Fileexplorer\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="C:\Users\avina\AndroidSample\Fileexplorer\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-063a163f9333d90a622d5873b85e23ea8cc793f5.jar" />
+    </item>
+    <item
+        jar="C:\Users\avina\AndroidSample\Fileexplorer\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="C:\Users\avina\AndroidSample\Fileexplorer\app\build\intermediates\pre-dexed\debug\classes-1df6ea9ff7cfdf0dfc3785e5d0ebb761b6b33a86.jar" />
     </item>
 
 </items>
